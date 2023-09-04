@@ -63,6 +63,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.40.1",
     "@types/uuid": "^9.0.2",
     "prisma": "^5.1.1"
   }
