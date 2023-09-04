@@ -14,12 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
@@ -27,8 +22,8 @@ import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
   fileUrl: z.string().min(1, {
-    message: "Attachment is required."
-  })
+    message: "Attachment is required.",
+  }),
 });
 
 export const MessageFileModal = () => {
@@ -42,13 +37,13 @@ export const MessageFileModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fileUrl: "",
-    }
+    },
   });
 
   const handleClose = () => {
     form.reset();
     onClose();
-  }
+  };
 
   const isLoading = form.formState.isSubmitting;
 
@@ -70,13 +65,13 @@ export const MessageFileModal = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
-        <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center font-bold">
+      <DialogContent className="p-0 overflow-hidden text-black bg-white">
+        <DialogHeader className="px-6 pt-8">
+          <DialogTitle className="text-2xl font-bold text-center">
             Add an attachment
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
@@ -85,7 +80,7 @@ export const MessageFileModal = () => {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="space-y-8 px-6">
+            <div className="px-6 space-y-8">
               <div className="flex items-center justify-center text-center">
                 <FormField
                   control={form.control}
@@ -104,7 +99,7 @@ export const MessageFileModal = () => {
                 />
               </div>
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4 bg-gray-100">
               <Button variant="primary" disabled={isLoading}>
                 Send
               </Button>
@@ -113,5 +108,5 @@ export const MessageFileModal = () => {
         </Form>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
